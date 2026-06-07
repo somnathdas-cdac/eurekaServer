@@ -1,0 +1,84 @@
+2026-06-06T22:52:33.276+05:30  INFO 28144 --- [eurekaServer] [main] c.m.e.e.EurekaServerApplication          : Starting EurekaServerApplication using Java 21.0.10 with PID 28144 (D:\SpringInitializr\The_Zipped\MicroServices\eurekaServer\target\classes started by SOMENATH in D:\SpringInitializr\The_Zipped\MicroServices\eurekaServer)
+2026-06-06T22:52:33.281+05:30  INFO 28144 --- [eurekaServer] [main] c.m.e.e.EurekaServerApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-06-06T22:52:34.097+05:30  INFO 28144 --- [eurekaServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=666949b6-8298-3aee-a4f4-7ff93c8d2175
+2026-06-06T22:52:34.324+05:30  INFO 28144 --- [eurekaServer] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8761 (http)
+2026-06-06T22:52:34.337+05:30  INFO 28144 --- [eurekaServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-06T22:52:34.338+05:30  INFO 28144 --- [eurekaServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-06T22:52:34.401+05:30  INFO 28144 --- [eurekaServer] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1063 ms
+2026-06-06T22:52:35.064+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-06-06T22:52:35.065+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-06-06T22:52:35.197+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-06-06T22:52:35.197+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-06-06T22:52:35.326+05:30  INFO 28144 --- [eurekaServer] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-06-06T22:52:35.916+05:30  WARN 28144 --- [eurekaServer] [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-06-06T22:52:35.938+05:30  INFO 28144 --- [eurekaServer] [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-06-06T22:52:35.962+05:30  INFO 28144 --- [eurekaServer] [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-06-06T22:52:35.962+05:30  INFO 28144 --- [eurekaServer] [main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2026-06-06T22:52:35.963+05:30  INFO 28144 --- [eurekaServer] [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1780766555963 with initial instances count: 0
+2026-06-06T22:52:35.995+05:30  INFO 28144 --- [eurekaServer] [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2026-06-06T22:52:35.996+05:30  INFO 28144 --- [eurekaServer] [main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2026-06-06T22:52:36.096+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-06-06T22:52:36.097+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-06-06T22:52:36.097+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-06-06T22:52:36.097+05:30  INFO 28144 --- [eurekaServer] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-06-06T22:52:36.118+05:30  INFO 28144 --- [eurekaServer] [main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2026-06-06T22:52:36.133+05:30  INFO 28144 --- [eurekaServer] [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2026-06-06T22:52:36.133+05:30  INFO 28144 --- [eurekaServer] [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2026-06-06T22:52:36.142+05:30  INFO 28144 --- [eurekaServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-06-06T22:52:36.220+05:30  INFO 28144 --- [eurekaServer] [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application EUREKASERVER with eureka with status UP
+2026-06-06T22:52:36.234+05:30  INFO 28144 --- [eurekaServer] [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2026-06-06T22:52:36.234+05:30  INFO 28144 --- [eurekaServer] [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2026-06-06T22:52:36.235+05:30  INFO 28144 --- [eurekaServer] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2026-06-06T22:52:36.235+05:30  INFO 28144 --- [eurekaServer] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2026-06-06T22:52:36.235+05:30  INFO 28144 --- [eurekaServer] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2026-06-06T22:52:36.237+05:30  INFO 28144 --- [eurekaServer] [Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2026-06-06T22:52:36.240+05:30  INFO 28144 --- [eurekaServer] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8761 (http) with context path '/'
+2026-06-06T22:52:36.242+05:30  INFO 28144 --- [eurekaServer] [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2026-06-06T22:52:36.252+05:30  INFO 28144 --- [eurekaServer] [main] c.m.e.e.EurekaServerApplication          : Started EurekaServerApplication in 3.35 seconds (process running for 3.994)
+2026-06-06T22:52:36.929+05:30  INFO 28144 --- [eurekaServer] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-06T22:52:36.929+05:30  INFO 28144 --- [eurekaServer] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-06T22:52:36.932+05:30  INFO 28144 --- [eurekaServer] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-06-06T22:52:49.500+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/LAPTOP-R7OQ42VU:product-service:8081 with status UP (replication=false)
+2026-06-06T22:52:50.138+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/LAPTOP-R7OQ42VU:product-service:8081 with status UP (replication=true)
+2026-06-06T22:52:59.632+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=false)
+2026-06-06T22:53:00.146+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=true)
+2026-06-06T22:53:11.125+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PAYMENT-SERVICE/LAPTOP-R7OQ42VU:payment-service:8083 with status UP (replication=false)
+2026-06-06T22:53:11.634+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PAYMENT-SERVICE/LAPTOP-R7OQ42VU:payment-service:8083 with status UP (replication=true)
+2026-06-06T22:53:22.266+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status UP (replication=false)
+2026-06-06T22:53:22.804+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status UP (replication=true)
+2026-06-06T22:53:36.251+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-06-06T22:54:36.260+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2026-06-06T22:55:36.267+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2026-06-06T22:56:36.277+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2026-06-06T22:57:36.277+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-06-06T22:58:36.282+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2026-06-06T22:59:36.285+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2026-06-06T23:00:05.502+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status DOWN (replication=false)
+2026-06-06T23:00:06.017+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status DOWN (replication=true)
+2026-06-06T23:00:08.533+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 (replication=false)
+2026-06-06T23:00:09.044+05:30  WARN 28144 --- [eurekaServer] [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082
+2026-06-06T23:00:09.044+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-1] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): ORDER-SERVICE - LAPTOP-R7OQ42VU:order-service:8082
+2026-06-06T23:00:09.045+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-11] c.n.eureka.cluster.ReplicationTask       : The replication of task ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082:Cancel@localhost failed with response code 404
+2026-06-06T23:00:09.045+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-11] c.netflix.eureka.cluster.PeerEurekaNode  : ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082:Cancel@localhost: missing entry.
+2026-06-06T23:00:09.564+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=false)
+2026-06-06T23:00:10.080+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=true)
+2026-06-06T23:00:20.680+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status DOWN (replication=false)
+2026-06-06T23:00:21.186+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status DOWN (replication=true)
+2026-06-06T23:00:25.833+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 (replication=false)
+2026-06-06T23:00:26.349+05:30  WARN 28144 --- [eurekaServer] [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080
+2026-06-06T23:00:26.349+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-6] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): APIGATEWAY - LAPTOP-R7OQ42VU:apigateway:8080
+2026-06-06T23:00:26.352+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-0] c.n.eureka.cluster.ReplicationTask       : The replication of task APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080:Cancel@localhost failed with response code 404
+2026-06-06T23:00:26.352+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-0] c.netflix.eureka.cluster.PeerEurekaNode  : APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080:Cancel@localhost: missing entry.
+2026-06-06T23:00:30.992+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status UP (replication=false)
+2026-06-06T23:00:31.501+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY/LAPTOP-R7OQ42VU:apigateway:8080 with status UP (replication=true)
+2026-06-06T23:00:36.285+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-06-06T23:00:37.082+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status DOWN (replication=false)
+2026-06-06T23:00:37.588+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status DOWN (replication=true)
+2026-06-06T23:00:40.094+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 (replication=false)
+2026-06-06T23:00:40.603+05:30  WARN 28144 --- [eurekaServer] [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082
+2026-06-06T23:00:40.603+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-8] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): ORDER-SERVICE - LAPTOP-R7OQ42VU:order-service:8082
+2026-06-06T23:00:40.604+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-5] c.n.eureka.cluster.ReplicationTask       : The replication of task ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082:Cancel@localhost failed with response code 404
+2026-06-06T23:00:40.604+05:30  WARN 28144 --- [eurekaServer] [TaskBatchingWorker-target_localhost-5] c.netflix.eureka.cluster.PeerEurekaNode  : ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082:Cancel@localhost: missing entry.
+2026-06-06T23:00:51.064+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=false)
+2026-06-06T23:00:51.571+05:30  INFO 28144 --- [eurekaServer] [http-nio-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/LAPTOP-R7OQ42VU:order-service:8082 with status UP (replication=true)
+2026-06-06T23:01:36.298+05:30  INFO 28144 --- [eurekaServer] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
