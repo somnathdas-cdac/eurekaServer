@@ -1,0 +1,66 @@
+#version: '3.8'
+
+networks:
+  ecart-network:
+    driver: bridge
+
+services:
+  eureka-service:
+    image: ${DOCKER_HUB_USERNAME}/eureka-service:latest
+    container_name: eureka-service
+    hostname: eureka-service
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - ecart-network
+    healthcheck:
+      test: ["CMD", "bash", "-c", "</dev/tcp/localhost/8761"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  service-two:
+    image: ${DOCKER_HUB_USERNAME}/service-two:latest
+    container_name: service-two
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+    networks:
+      - ecart-network
+
+  service-three:
+    image: ${DOCKER_HUB_USERNAME}/service-three:latest
+    container_name: service-three
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+    networks:
+      - ecart-network
+
+  service-four:
+    image: ${DOCKER_HUB_USERNAME}/service-four:latest
+    container_name: service-four
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+    networks:
+      - ecart-network
+
+  service-five:
+    image: ${DOCKER_HUB_USERNAME}/service-five:latest
+    container_name: service-five
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+    networks:
+      - ecart-network
