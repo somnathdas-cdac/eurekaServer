@@ -12,6 +12,9 @@ FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 # Create log directory explicitly matching application.properties
 RUN mkdir logs 
-COPY --from=build /app/target/order-service-0.0.1-SNAPSHOT.jar app.jar
+#COPY --from=build /app/target/order-service-0.0.1-SNAPSHOT.jar app.jar
+# Update this line inside your Dockerfile
+COPY target/eurekaServer-0.0.1-SNAPSHOT.jar app.jar
+
 EXPOSE 8761
 ENTRYPOINT ["java", "-jar", "app.jar"]
