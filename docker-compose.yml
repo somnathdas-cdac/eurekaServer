@@ -6,7 +6,7 @@ networks:
 
 services:
   eureka-service:
-    image: ${DOCKER_HUB_USERNAME}/eureka-service:latest
+    image: ${REGISTRY_USERNAME}/eureka-service:latest
     container_name: eureka-service
     hostname: eureka-service
     ports:
@@ -22,7 +22,7 @@ services:
       retries: 3
 
   service-two:
-    image: ${DOCKER_HUB_USERNAME}/service-two:latest
+    image: ${REGISTRY_USERNAME}/service-two:latest
     container_name: service-two
     depends_on:
       eureka-service:
@@ -33,7 +33,7 @@ services:
       - ecart-network
 
   service-three:
-    image: ${DOCKER_HUB_USERNAME}/service-three:latest
+    image: ${REGISTRY_USERNAME}/service-three:latest
     container_name: service-three
     depends_on:
       eureka-service:
@@ -44,7 +44,7 @@ services:
       - ecart-network
 
   service-four:
-    image: ${DOCKER_HUB_USERNAME}/service-four:latest
+    image: ${REGISTRY_USERNAME}/service-four:latest
     container_name: service-four
     depends_on:
       eureka-service:
@@ -55,7 +55,7 @@ services:
       - ecart-network
 
   service-five:
-    image: ${DOCKER_HUB_USERNAME}/service-five:latest
+    image: ${REGISTRY_USERNAME}/service-five:latest
     container_name: service-five
     depends_on:
       eureka-service:
