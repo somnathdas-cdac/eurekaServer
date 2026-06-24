@@ -41,6 +41,21 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+      # STEP 1: Checkout code so GitHub Actions can see your docker-compose.yml file
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # STEP 2: Automatically copy docker-compose.yml to your Oracle Cloud VM
+      - name: Copy docker-compose.yml to OCI VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.OCI_VM_IP }}
+          username: opc
+          key: ${{ secrets.OCI_SSH_KEY }}
+          source: "docker-compose.yml"
+          target: "~/app"
+
+      # STEP 3: Run your existing SSH deployment script
       - name: Deploy to Oracle Cloud VM via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
