@@ -56,13 +56,16 @@ jobs:
           target: "~/app"
           strip_components: 0
 
-      # STEP 3: Run the updated SSH deployment script with path handling and checks
+      # STEP 3: Run the updated SSH deployment script with environment variable injection
       - name: Deploy to Oracle Cloud VM via SSH
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
         with:
           host: ${{ secrets.OCI_VM_IP }}
           username: opc
           key: ${{ secrets.OCI_SSH_KEY }}
+          envs: REGISTRY_USERNAME
           script: |
             mkdir -p ~/app
             cd ~/app
@@ -79,8 +82,8 @@ jobs:
             fi
 
             # Log into Docker Hub using sudo for OL9 environment safety
-            echo "${{ secrets.REGISTRY_PASSWORD }}" | sudo docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+            echo "${{ secrets.REGISTRY_PASSWORD }}" | sudo docker login -u "$REGISTRY_USERNAME" --password-stdin
             
-            # Run docker compose using the explicit file path pointing to the current directory
-            sudo docker compose -f docker-compose.yml pull
-            sudo docker compose -f docker-compose.yml up -d --remove-orphans
+            # Run docker compose preserving the exported environment variables via sudo -E
+            sudo -E docker compose -f docker-compose.yml pull
+            sudo -E docker compose -f docker-compose.yml up -d --remove-orphans
