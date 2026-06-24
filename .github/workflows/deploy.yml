@@ -54,8 +54,9 @@ jobs:
           key: ${{ secrets.OCI_SSH_KEY }}
           source: "docker-compose.yml"
           target: "~/app"
+          strip_components: 0
 
-      # STEP 3: Run your existing SSH deployment script
+      # STEP 3: Run the updated SSH deployment script with path handling and checks
       - name: Deploy to Oracle Cloud VM via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -65,7 +66,21 @@ jobs:
           script: |
             mkdir -p ~/app
             cd ~/app
+            
+            # Find exactly where the file landed and move it to the root of ~/app if it was nested
+            find . -name "docker-compose.yml" -exec mv {} . \; 2>/dev/null || true
+            
+            # Verify the file is in the current directory before executing Docker commands
+            if [ ! -f "docker-compose.yml" ]; then
+              echo "❌ CRITICAL ERROR: docker-compose.yml still not found in $(pwd)!"
+              echo "Listing contents of the directory to troubleshoot:"
+              ls -R
+              exit 1
+            fi
+
             # Log into Docker Hub using sudo for OL9 environment safety
             echo "${{ secrets.REGISTRY_PASSWORD }}" | sudo docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
-            sudo docker compose pull
-            sudo docker compose up -d --remove-orphans
+            
+            # Run docker compose using the explicit file path pointing to the current directory
+            sudo docker compose -f docker-compose.yml pull
+            sudo docker compose -f docker-compose.yml up -d --remove-orphans
