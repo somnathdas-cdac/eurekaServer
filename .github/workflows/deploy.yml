@@ -1,81 +1,62 @@
-name: CI/CD Pipeline to Oracle Cloud
+name: CI/CD Pipeline to Oracle Cloud VM
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
 
-      # STEP 1: Set up Java Environment
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
 
-      # STEP 2: Compile and Build the .jar file
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+    - name: Authenticate to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: Build and Push Eureka Server Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.REGISTRY_USERNAME }}/eurekaserver:latest
 
-      - name: Build and Push Eureka Service Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/eureka-service:latest
+    - name: Copy docker-compose.yml to Oracle Cloud VM
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.OCI_VM_IP }}
+        username: ${{ secrets.OCI_VM_USER }}
+        key: ${{ secrets.OCI_SSH_KEY }}
+        source: "docker-compose.yml"
+        target: "~/app/"
 
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      # STEP 1: Checkout code so GitHub Actions can see your docker-compose.yml file
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # STEP 2: Automatically copy docker-compose.yml to your Oracle Cloud VM
-      - name: Copy docker-compose.yml to OCI VM
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.OCI_VM_IP }}
-          username: opc
-          key: ${{ secrets.OCI_SSH_KEY }}
-          source: "docker-compose.yml"
-          target: "~/app"
-          strip_components: 0
-
-      # STEP 3: Generate local .env file on host and run deployment
-      - name: Deploy to Oracle Cloud VM via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.OCI_VM_IP }}
-          username: opc
-          key: ${{ secrets.OCI_SSH_KEY }}
-          script: |
-            mkdir -p ~/app
-            cd ~/app
-            
-            # 1. Normalize path if file got nested by scp-action
-            find . -name "docker-compose.yml" -exec mv {} . \; 2>/dev/null || true
-            
-            # 2. Write the environment variable directly into a local .env file
-            echo "REGISTRY_USERNAME=${{ secrets.REGISTRY_USERNAME }}" > .env
-            
-            # 3. Authenticate with Docker Hub using the GitHub context directly
-            echo "${{ secrets.REGISTRY_PASSWORD }}" | sudo docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
-            
-            # 4. Pull and launch containers (Docker Compose automatically reads the local .env file)
-            sudo docker compose pull
-            sudo docker compose up -d --remove-orphans
+    - name: Execute Remote Deployment via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.OCI_VM_IP }}
+        username: ${{ secrets.OCI_VM_USER }}
+        key: ${{ secrets.OCI_SSH_KEY }}
+        script: |
+          cd ~/app/
+          # Write the environment variable to a persistent runtime file on the host
+          echo "REGISTRY_USERNAME=${{ secrets.REGISTRY_USERNAME }}" > .env
+          
+          # Force Docker to re-authenticate if downloading from a private repository
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | sudo docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+          
+          sudo docker compose down
+          sudo docker compose pull
+          sudo docker compose up -d
