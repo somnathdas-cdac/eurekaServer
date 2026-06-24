@@ -1,66 +1,62 @@
 #version: '3.8'
 
-networks:
-  ecart-network:
-    driver: bridge
-
 services:
-  eureka-service:
-    image: ${REGISTRY_USERNAME}/eureka-service:latest
-    container_name: eureka-service
-    hostname: eureka-service
+  eurekaserver:
+    image: ${REGISTRY_USERNAME}/eurekaserver:latest
+    container_name: eurekaserver
     ports:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     networks:
       - ecart-network
-    healthcheck:
-      test: ["CMD", "bash", "-c", "</dev/tcp/localhost/8761"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+    restart: always
 
-  service-two:
-    image: ${REGISTRY_USERNAME}/service-two:latest
-    container_name: service-two
-    depends_on:
-      eureka-service:
-        condition: service_healthy
+  # Template configuration for your remaining 4 microservices:
+  service2:
+    image: ${REGISTRY_USERNAME}/service2:latest
+    container_name: service2
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8761/eureka/
     networks:
       - ecart-network
-
-  service-three:
-    image: ${REGISTRY_USERNAME}/service-three:latest
-    container_name: service-three
     depends_on:
-      eureka-service:
-        condition: service_healthy
+      - eurekaserver
+    restart: always
+
+  service3:
+    image: ${REGISTRY_USERNAME}/service3:latest
+    container_name: service3
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8761/eureka/
     networks:
       - ecart-network
-
-  service-four:
-    image: ${REGISTRY_USERNAME}/service-four:latest
-    container_name: service-four
     depends_on:
-      eureka-service:
-        condition: service_healthy
+      - eurekaserver
+    restart: always
+
+  service4:
+    image: ${REGISTRY_USERNAME}/service4:latest
+    container_name: service4
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8761/eureka/
     networks:
       - ecart-network
-
-  service-five:
-    image: ${REGISTRY_USERNAME}/service-five:latest
-    container_name: service-five
     depends_on:
-      eureka-service:
-        condition: service_healthy
+      - eurekaserver
+    restart: always
+
+  service5:
+    image: ${REGISTRY_USERNAME}/service5:latest
+    container_name: service5
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8761/eureka/
     networks:
       - ecart-network
+    depends_on:
+      - eurekaserver
+    restart: always
+
+networks:
+  ecart-network:
+    driver: bridge
